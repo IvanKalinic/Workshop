@@ -10,11 +10,11 @@ namespace BackEnd.Migrations
                 name: "Speakers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<int>(type: "INTEGER", maxLength: 200, nullable: false),
-                    Bio = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: true),
-                    WebSite = table.Column<string>(type: "TEXT", maxLength: 200, nullable: true)
+                    Name = table.Column<string>(maxLength: 200, nullable: false),
+                    Bio = table.Column<string>(maxLength: 1000, nullable: true),
+                    WebSite = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {

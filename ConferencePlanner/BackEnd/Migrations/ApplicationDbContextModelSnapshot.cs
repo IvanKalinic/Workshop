@@ -13,7 +13,7 @@ namespace BackEnd.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.1");
+                .HasAnnotation("ProductVersion", "3.1.10");
 
             modelBuilder.Entity("BackEnd.Models.Speaker", b =>
                 {
@@ -22,16 +22,17 @@ namespace BackEnd.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Bio")
-                        .HasMaxLength(1000)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(1000);
 
-                    b.Property<int>("Name")
-                        .HasMaxLength(200)
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(200);
 
                     b.Property<string>("WebSite")
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(200);
 
                     b.HasKey("Id");
 
