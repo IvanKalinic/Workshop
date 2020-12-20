@@ -8,7 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FrontEnd.Data;
 using FrontEnd.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace FrontEnd
 {
@@ -30,6 +32,7 @@ namespace FrontEnd
             {
                 client.BaseAddress = new Uri(Configuration["serviceUrl"]);
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

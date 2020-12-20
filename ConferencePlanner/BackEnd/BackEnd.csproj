@@ -8,6 +8,10 @@
     <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Migrations\20201220185616_CreateIdentitySchema.cs" />
+    <Compile Remove="Migrations\20201220185616_CreateIdentitySchema.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="conferences.db" />
     <None Remove="conferences.db-shm" />
     <None Remove="conferences.db-wal" />
