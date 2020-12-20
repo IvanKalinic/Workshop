@@ -25,24 +25,24 @@ namespace BackEnd.Controllers
         [HttpPost]
         public async Task<ActionResult<List<SearchResult>>> Search(SearchTerm term)
         {
-            var query = term.Query;
-            var sessionResults = await _context.Sessions.Include(s => s.Track)
+            var query = term.Query.ToLowerInvariant();
+            var sessionResults = (await _context.Sessions.Include(s => s.Track)
                                                 .Include(s => s.SessionSpeakers)
-                                                    .ThenInclude(ss => ss.Speaker)
+                                                    .ThenInclude(ss => ss.Speaker).ToListAsync())
                                                 .Where(s =>
-                                                    s.Title.Contains(query) ||
-                                                    s.Track.Name.Contains(query)
+                                                    s.Title.ToLowerInvariant().Contains(query) ||
+                                                    s.Track.Name.ToLowerInvariant().Contains(query)
                                                 )
-                                                .ToListAsync();
+                                                .ToList();
 
-            var speakerResults = await _context.Speakers.Include(s => s.SessionSpeakers)
-                                                    .ThenInclude(ss => ss.Session)
+            var speakerResults =(await _context.Speakers.Include(s => s.SessionSpeakers)
+                                                    .ThenInclude(ss => ss.Session).ToListAsync())
                                                 .Where(s =>
-                                                    s.Name.Contains(query) ||
-                                                    s.Bio.Contains(query) ||
-                                                    s.WebSite.Contains(query)
+                                                    (s.Name?.ToLowerInvariant().Contains(query) ?? false) ||
+                                                    (s.Bio?.ToLowerInvariant().Contains(query) ?? false)  ||
+                                                    (s.WebSite?.ToLowerInvariant().Contains(query) ?? false)
                                                 )
-                                                .ToListAsync();
+                                                .ToList();
 
             var results = sessionResults.Select(s => new SearchResult
             {
