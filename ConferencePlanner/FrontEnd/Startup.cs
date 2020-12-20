@@ -28,6 +28,8 @@ namespace FrontEnd
         {
             services.AddRazorPages();
 
+            services.AddSingleton<IAdminService, AdminService>();
+
             services.AddHttpClient<IApiClient, ApiClient>(client =>
             {
                 client.BaseAddress = new Uri(Configuration["serviceUrl"]);
@@ -54,6 +56,7 @@ namespace FrontEnd
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
