@@ -44,6 +44,9 @@ namespace BackEnd
             });   
             services.AddControllers();
 
+            services.AddHealthChecks()
+                .AddDbContextCheck<ApplicationDbContext>();
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo {Title = "Conference Planner API", Version = "v1"});
@@ -87,6 +90,7 @@ namespace BackEnd
                     return Task.CompletedTask;
                 });
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health");
             });
         }
     }

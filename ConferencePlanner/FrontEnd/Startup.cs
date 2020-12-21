@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FrontEnd.Data;
+using FrontEnd.HealthCheck;
 using FrontEnd.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,6 +33,10 @@ namespace FrontEnd
             });
 
             services.AddSingleton<IAdminService, AdminService>();
+
+            services.AddHealthChecks()
+                .AddCheck<BackendHealthCheck>("backend")
+                .AddDbContextCheck<IdentityDbContext>();
 
             services.AddAuthorization(options =>
             {
@@ -74,6 +79,7 @@ namespace FrontEnd
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapHealthChecks("/health");
             });
         }
     }

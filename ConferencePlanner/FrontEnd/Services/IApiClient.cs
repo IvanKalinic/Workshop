@@ -18,5 +18,6 @@ namespace FrontEnd.Services
         Task DeleteSessionAsync(int id);
 
         Task<List<SearchResult>> SearchAsync(string query);
+        Task<bool> CheckHealthAsync();
     }
 }
