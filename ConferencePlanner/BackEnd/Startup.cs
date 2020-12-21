@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using BackEnd.Controllers;
 using BackEnd.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -43,6 +44,7 @@ namespace BackEnd
                 //}
             });   
             services.AddControllers();
+           
 
             services.AddHealthChecks()
                 .AddDbContextCheck<ApplicationDbContext>();
