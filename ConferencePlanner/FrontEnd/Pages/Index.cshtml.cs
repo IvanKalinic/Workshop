@@ -23,6 +23,11 @@ namespace FrontEnd.Pages
             _logger = logger;
         }
 
+        [TempData]
+        public string Message { get; set; }
+
+        public bool ShowMessage => !string.IsNullOrEmpty(Message);
+
         public IEnumerable<IGrouping<DateTimeOffset?, SessionResponse>> Sessions { get; set; }
 
         public IEnumerable<(int Offset, DayOfWeek? DayofWeek)> DayOffsets { get; set; }

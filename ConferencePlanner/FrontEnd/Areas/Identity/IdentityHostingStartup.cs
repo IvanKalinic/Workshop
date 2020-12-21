@@ -23,8 +23,7 @@ namespace FrontEnd.Areas.Identity
                     .AddEntityFrameworkStores<IdentityDbContext>()
                     .AddClaimsPrincipalFactory<ClaimsPrincipalFactory>();
 
-                services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<IdentityDbContext>();
+                
             });
         }
     }

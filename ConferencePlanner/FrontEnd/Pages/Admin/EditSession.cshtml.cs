@@ -21,6 +21,11 @@ namespace FrontEnd.Pages.Admin
         [BindProperty]
         public Session Session { get; set; }
 
+        [TempData]
+        public string Message { get; set; }
+
+        public bool ShowMessage => !string.IsNullOrEmpty(Message);
+
         public async Task OnGetAsync(int id)
         {
             var session = await _apiClient.GetSessionAsync(id);
@@ -43,6 +48,8 @@ namespace FrontEnd.Pages.Admin
 
             await _apiClient.PutSessionAsync(Session);
 
+            Message = "Session updated successfully!";
+
             return Page();
         }
 
@@ -54,6 +61,8 @@ namespace FrontEnd.Pages.Admin
             {
                 await _apiClient.DeleteSessionAsync(id);
             }
+
+            Message = "Session deleted successfully!";
 
             return Page();
         }
