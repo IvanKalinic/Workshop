@@ -19,6 +19,10 @@ namespace FrontEnd.Areas.Identity
                     options.UseSqlite("Data Source=security.db")
                     );
 
+                services.AddDefaultIdentity<User>()
+                    .AddEntityFrameworkStores<IdentityDbContext>()
+                    .AddClaimsPrincipalFactory<ClaimsPrincipalFactory>();
+
                 services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<IdentityDbContext>();
             });
